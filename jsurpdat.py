@@ -242,12 +242,11 @@ class JSSecurityScanner:
 
             # API keys with specific patterns
             'specific_api_keys': re.compile(
-               r'(AIza[0-9A-Za-z\-_]{35}|'                            # Google API key
-               r'sk_(live|test)_[0-9a-zA-Z]{24}|'                     # Stripe keys
-               r'xox[pboa]-[0-9]{12}-[0-9]{12}-[0-9]{12}-[a-z0-9]{32}|' # Slack token
-               r'gh[pousr]_[A-Za-z0-9_]{36}|'                         # GitHub token
-               r'SG\.[A-Za-z0-9_\-\.]{22,}|'                          # SendGrid API key
-               r'eyJ[A-Za-z0-9-_=]+\.[A-Za-z0-9-_=]+\.?[A-Za-z0-9-_.+/=]*)' # JWT
+                r'(AIza[0-9A-Za-z\-_]{35}|'  # Google API key
+                r'sk_live_[0-9a-z]{24}|'     # Stripe secret key
+                r'xox[pboa]-[0-9]{12}-[0-9]{12}-[0-9]{12}-[a-z0-9]{32}|'  # Slack token
+                r'gh[pousr]_[A-Za-z0-9_]{36}|'  # GitHub token
+                r'eyJ[A-Za-z0-9-_=]+\.[A-Za-z0-9-_=]+\.?[A-Za-z0-9-_.+/=]*)'  # JWT
            ),
 
 
