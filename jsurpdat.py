@@ -470,6 +470,89 @@ class JSSecurityScanner:
             # Interesting File Types
             r'\.json', r'\.map', r'\.php', r'\.action', r'\.do',
             r'\.zip', r'\.bak', r'\.old', r'\.swp', r'\.log'
+            
+            
+            # ---------------------
+            # API & Backend Endpoints
+            r'/api/', r'/api/v[1-4]/', r'/apis/', r'/rest/', r'/restapi/',
+            r'/jsonapi/', r'/graphql', r'/gql/', r'/grpc/', r'/soap/',
+            r'/rpc/', r'/endpoint/', r'/service/', r'/backend/',
+            r'/microservice/', r'/internal-api/', r'/private-api/',
+            r'/external-api/', r'/partner-api/',
+            
+            # Authentication & Authorization
+            r'/auth/', r'/authentication/', r'/authorize/', r'/oauth/',
+            r'/oauth2/', r'/openid/', r'/saml/', r'/oidc/', r'/jwt/',
+            r'/token/', r'/refresh-token/', r'/access-token/', r'/session/',
+            r'/login/', r'/logout/', r'/signin/', r'/signout/', r'/register/',
+            r'/signup/', r'/forgot-password/', r'/reset-password/', r'/verify/',
+            r'/2fa/', r'/mfa/', r'/otp/', r'/validate/',
+            
+            # Admin & Privileged Access
+            r'/admin/', r'/administrator/', r'/cpanel/', r'/wp-admin/',
+            r'/wp-login/', r'/dashboard/', r'/manager/', r'/console/',
+            r'/controlpanel/', r'/system/', r'/root/', r'/superuser/',
+            r'/superadmin/', r'/staff/', r'/support/', r'/operator/',
+            r'/configurator/',
+            
+            # User & Account Management
+            r'/user/', r'/users/', r'/account/', r'/accounts/', r'/profile/',
+            r'/profiles/', r'/member/', r'/members/', r'/customer/',
+            r'/customers/', r'/client/', r'/clients/', r'/guest/', r'/guests/',
+            
+            # File & Data Operations
+            r'/file/', r'/files/', r'/upload/', r'/download/', r'/export/',
+            r'/import/', r'/data/', r'/database/', r'/db/', r'/sql/',
+            r'/mongodb/', r'/redis/', r'/backup/', r'/restore/', r'/dump/',
+            r'/load/', r'/storage/', r'/blob/', r'/document/', r'/documents/',
+            r'/attachment/', r'/attachments/',
+            
+            # System & Debugging
+            r'/system/', r'/sys/', r'/info/', r'/status/', r'/health/',
+            r'/healthcheck/', r'/ready/', r'/live/', r'/version/', r'/metrics/',
+            r'/stats/', r'/statistics/', r'/log/', r'/logs/', r'/logger/',
+            r'/trace/', r'/debug/', r'/debugger/', r'/dev/', r'/development/',
+            r'/test/', r'/testing/', r'/qa/', r'/staging/', r'/experimental/',
+            r'/experiment/',
+            
+            # Payment & Financial
+            r'/payment/', r'/payments/', r'/checkout/', r'/invoice/',
+            r'/invoices/', r'/billing/', r'/subscription/', r'/subscriptions/',
+            r'/refund/', r'/refunds/', r'/transaction/', r'/transactions/',
+            r'/stripe/', r'/paypal/', r'/braintree/', r'/square/', r'/webhook/',
+            r'/webhooks/', r'/callback/', r'/callbacks/',
+            
+            # Communication & Real-Time
+            r'/ws/', r'/wss/', r'/socket/', r'/sockets/', r'/socket\.io/',
+            r'/signalr/', r'/websocket/', r'/events/', r'/event/', r'/sse/',
+            r'/poll/', r'/longpoll/', r'/notify/', r'/notification/',
+            r'/notifications/', r'/alert/', r'/alerts/', r'/message/',
+            r'/messages/', r'/chat/', r'/chats/',
+            
+            # Cloud & Infrastructure
+            r'/aws/', r'/s3/', r'/ec2/', r'/lambda/', r'/azure/', r'/gcp/',
+            r'/firebase/', r'/cloud/', r'/cloudfunctions/', r'/k8s/',
+            r'/kubernetes/', r'/docker/', r'/vm/', r'/virtualmachine/',
+            r'/container/', r'/containers/', r'/orchestrator/',
+            
+            # Hidden & Suspicious
+            r'/secret/', r'/secrets/', r'/private/', r'/hidden/', r'/legacy/',
+            r'/old/', r'/temp/', r'/tmp/', r'/archive/', r'/backdoor/',
+            r'/shell/', r'/exec/', r'/cmd/', r'/command/', r'/console/',
+            r'/terminal/', r'/inject/', r'/exploit/', r'/attack/',
+            
+            # Third-Party Services
+            r'/firebase/', r'/twilio/', r'/sendgrid/', r'/mailchimp/',
+            r'/aws/', r'/google/', r'/facebook/', r'/twitter/', r'/linkedin/',
+            r'/github/', r'/gitlab/', r'/bitbucket/', r'/slack/', r'/discord/',
+            r'/zoom/',
+            
+            # Miscellaneous High-Value
+            r'/config/', r'/configuration/', r'/settings/', r'/env/',
+            r'/environment/', r'/flags/', r'/feature/', r'/features/',
+            r'/swagger/', r'/openapi/', r'/redoc/', r'/api-docs/',
+            r'/documentation/', r'/docs/', r'/wiki/', r'/help/', r'/support/',
+            r'/contact/', r'/feedback/', r'/report/'
         ]
 
         # Hidden functionality patterns
@@ -796,15 +879,19 @@ class JSSecurityScanner:
         endpoints = self.patterns['endpoints'].finditer(content)
         for match in endpoints:
             endpoint = match.group(0).strip('"\'')
+            if not endpoint.startswith(('http://', 'https://')):
+                endpoint = urljoin(self.base_url, endpoint)
+            
+            
             
             # Determine endpoint category and severity
             severity = "medium"
             endpoint_type = "Generic Endpoint"
             
-            if any(p in endpoint for p in ['/auth', '/login', '/token']):
+            if any(p in endpoint for p in ['/auth', '/login', '/token', '/oauth']):
                 endpoint_type = "Authentication Endpoint"
-                severity = self.endpoint_severity['auth']
-            elif any(p in endpoint for p in ['/admin', '/privileged', '/roles']):
+                severity = self.endpoint_severity['auth', ]
+            elif any(p in endpoint for p in ['/admin', '/privileged', '/roles', '/admin', '/cpanel', '/wp-admin']):
                 endpoint_type = "Access Control Endpoint"
                 severity = self.endpoint_severity['access_control']
             elif any(p in endpoint for p in ['/debug', '/test-api', '/swagger']):
@@ -826,11 +913,28 @@ class JSSecurityScanner:
                 endpoint_type = "Configuration Endpoint"
                 severity = self.endpoint_severity['config']
             elif any(p in endpoint for p in ['/token', '/api-key', '/client-secrets']):
-                endpoint_type = "Token Endpoint"
-                severity = self.endpoint_severity['token']
+                 endpoint_type = "Admin Endpoint"
+            elif any(p in endpoint for p in ['/config', '/env', '/settings']):
+                endpoint_type = "Configuration Endpoint"
+            elif any(p in endpoint for p in ['/ws', '/socket', '/websocket']):
+                endpoint_type = "Token Endpoint"                
+            elif any(p in endpoint for p in ['/admin', '/cpanel', '/wp-admin']):
+                endpoint_type = "WebSocket Endpoint"
+            elif any(p in endpoint for p in ['/payment', '/stripe', '/paypal']):
+                endpoint_type = "Payment Endpoint"
+                everity = self.endpoint_severity['token']
             elif any(p in endpoint for p in ['/bypass', '/sudo-login', '?admin=true']):
                 endpoint_type = "Auth Bypass Endpoint"
                 severity = self.endpoint_severity['bypass']
+
+            
+            severity = "medium"
+            if "admin" in endpoint.lower() or "internal" in endpoint.lower():
+                severity = "high"
+            if "auth" in endpoint.lower() or "token" in endpoint.lower():
+                severity = "high"
+            if "config" in endpoint.lower() or "secret" in endpoint.lower():
+                severity = "high"
             
             # Get context for verification
             context = content[max(0, match.start()-50):match.end()+50]
