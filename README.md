@@ -1,4 +1,4 @@
-# 🔍 JS Security Scanner
+# JS Security Scanner
 
 **A comprehensive static analysis tool for detecting secrets, sensitive endpoints, and vulnerabilities in JavaScript files**
 
@@ -7,14 +7,14 @@
 
 ## Features
 
-- 🕵️ **Secret Detection**: 800+ patterns for API keys, tokens, credentials, and sensitive data
-- 🌐 **Endpoint Discovery**: Identify API routes, auth endpoints, and admin interfaces
-- 🔑 **Hardcoded Secrets**: Find passwords, private keys, and credentials in code
-- 💳 **Payment Info**: Detect credit card numbers and payment processing endpoints
-- ☁️ **Cloud Credentials**: AWS, Azure, GCP, and other cloud service keys
-- 📊 **Smart Filtering**: Skip common libraries to reduce false positives
-- 🚀 **Multi-threaded**: Fast scanning with configurable thread count
-- 📝 **Multiple Outputs**: Color-coded console output or JSON format
+- **Secret Detection**: 800+ patterns for API keys, tokens, credentials, and sensitive data
+- **Endpoint Discovery**: Identify API routes, auth endpoints, and admin interfaces
+- **Hardcoded Secrets**: Find passwords, private keys, and credentials in code
+- **Payment Info**: Detect credit card numbers and payment processing endpoints
+- ☁**Cloud Credentials**: AWS, Azure, GCP, and other cloud service keys
+- **Smart Filtering**: Skip common libraries to reduce false positives
+- **Multi-threaded**: Fast scanning with configurable thread count
+- **Multiple Outputs**: Color-coded console output or JSON format
 
 ## Installation
 
