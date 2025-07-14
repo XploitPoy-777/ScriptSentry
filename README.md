@@ -67,24 +67,9 @@ The tool is particularly useful for security researchers, penetration testers, a
 
 3. **Verify Installation**
    ```bash
-   python jsurpdat.py --help
+   python ScriptSentry-2.0.py -h
    ```
 
-### Alternative Installation Methods
-
-**Using pip (if available as a package):**
-```bash
-pip install scriptsentry
-```
-
-**Manual Installation:**
-```bash
-# Download the script
-wget https://raw.githubusercontent.com/username/ScriptSentry/main/jsurpdat.py
-
-# Make it executable (Linux/Mac)
-chmod +x jsurpdat.py
-```
 
 ## Usage Instructions
 
@@ -92,39 +77,39 @@ chmod +x jsurpdat.py
 
 **Scan a single website:**
 ```bash
-python jsurpdat.py -u https://example.com
+python ScriptSentry-2.0.py -u https://example.com
 ```
 
 **Scan a specific JavaScript file:**
 ```bash
-python jsurpdat.py -u https://example.com/static/js/app.js
+python ScriptSentry-2.0.py -u https://example.com/static/js/app.js
 ```
 
 **Scan multiple URLs from a file:**
 ```bash
-python jsurpdat.py -l urls.txt
+python ScriptSentry-2.0.py -l urls.txt
 ```
 
 ### Advanced Options
 
 **Verbose output with custom thread count:**
 ```bash
-python jsurpdat.py -u https://example.com -v -t 10
+python ScriptSentry-2.0.py -u https://example.com -v -t 10
 ```
 
 **Generate JSON output:**
 ```bash
-python jsurpdat.py -u https://example.com -o json
+python ScriptSentry-2.0.py -u https://example.com -o json
 ```
 
 **Filter by minimum severity:**
 ```bash
-python jsurpdat.py -u https://example.com --min-severity high
+python ScriptSentry-2.0.py -u https://example.com --min-severity high
 ```
 
 **Complete example with all options:**
 ```bash
-python jsurpdat.py -u https://example.com -v -t 8 -o json --min-severity medium
+python ScriptSentry-2.0.py -u https://example.com -v -t 8 -o json --min-severity medium
 ```
 
 ### Command Line Arguments
@@ -224,22 +209,8 @@ https://example3.com/static/js/app.js
 https://api.example.com
 ```
 
-## Dependencies
-
-### Core Dependencies
-- **Python 3.6+**: Required for modern Python features and syntax
-- **requests**: HTTP library for making web requests
-  ```bash
-  pip install requests
-  ```
-
-### Optional Dependencies
-- **colorama**: For better color support on Windows (auto-detected)
-- **urllib3**: For advanced HTTP features (included with requests)
-
 ### System Requirements
 - **Operating System**: Windows, macOS, or Linux
-- **Memory**: Minimum 512MB RAM (recommended 1GB+)
 - **Network**: Internet connection for scanning external websites
 - **Storage**: Minimal disk space (script is ~50KB)
 
@@ -252,7 +223,7 @@ https://api.example.com
 3. **Data Handling**: Treat discovered secrets as sensitive information
 4. **Reporting**: Report findings responsibly to the appropriate parties
 
-### 🔧 **Best Practices**
+###  **Best Practices**
 
 1. **Start with Low Thread Count**: Begin with default 5 threads to avoid overwhelming servers
 2. **Use Verbose Mode**: Enable verbose output for detailed analysis
@@ -262,14 +233,14 @@ https://api.example.com
    python jsurpdat.py -u https://example.com -o json > results.json
    ```
 
-### 🚀 **Performance Tips**
+###  **Performance Tips**
 
 1. **Adjust Thread Count**: Increase threads for faster scanning on robust targets
 2. **Use Direct JS URLs**: Scan specific JS files for targeted analysis
 3. **Batch Processing**: Use URL lists for scanning multiple targets
 4. **Output Format**: Use JSON for programmatic processing of results
 
-### 📝 **Troubleshooting**
+### **Troubleshooting**
 
 - **Connection Errors**: Check network connectivity and target availability
 - **Timeout Issues**: Increase timeout values or reduce thread count
