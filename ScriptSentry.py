@@ -7,6 +7,19 @@ import argparse
 from urllib.parse import urljoin
 from collections import defaultdict
 from concurrent.futures import ThreadPoolExecutor, as_completed
+from colorama import Fore, Style, init
+init(autoreset=True)
+
+print(Fore.CYAN + r"""
+ _____           _       _   _____            _              
+/  ___|         (_)     | | /  ___|          | |             
+\ `--.  ___ _ __ _ _ __ | |_\ `--.  ___ _ __ | |_ _ __ _   _ 
+ `--. \/ __| '__| | '_ \| __|`--. \/ _ \ '_ \| __| '__| | | |
+/\__/ / (__| |  | | |_) | |_/\__/ /  __/ | | | |_| |  | |_| |
+\____/ \___|_|  |_| .__/ \__\____/ \___|_| |_|\__|_|   \__, |
+                  | |                                   __/ |
+                  |_|                                  |___/ 
+""" + Fore.YELLOW + "──────────────────────────────────────────────[By XploitPoy-777]──────" + Style.RESET_ALL)
 
 # Color codes for terminal output
 class Colors:
