@@ -42,13 +42,6 @@ The tool is particularly useful for security researchers, penetration testers, a
 ## Tools Required
 
 - **Python 3.6+**: Core runtime environment
-- **requests**: HTTP library for web requests
-- **argparse**: Command-line argument parsing
-- **concurrent.futures**: Multi-threading support
-- **re**: Regular expression support
-- **json**: JSON processing
-- **urllib.parse**: URL parsing and manipulation
-- **collections**: Data structure utilities
 
 ## Installation Instructions
 
@@ -61,8 +54,8 @@ The tool is particularly useful for security researchers, penetration testers, a
 1. **Clone or Download the Repository**
    ```bash
    # If using git
-   git clone <repository-url>
-   cd ScriptSentry-main
+   git clone https://github.com/XploitPoy-777/ScriptSentry.git
+   cd ScriptSentry
    
    # Or download and extract the ZIP file
    ```
