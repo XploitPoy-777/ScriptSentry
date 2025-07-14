@@ -1,4 +1,4 @@
-# ScriptSentry - JavaScript Security Scanner
+<h1 align="center">ScriptSentry - JavaScript Security Scanner</h1>
 
 <p align="center"><img src="assets/Screenshot_2025png.png"></p>
 
