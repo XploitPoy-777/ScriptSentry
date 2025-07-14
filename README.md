@@ -8,32 +8,32 @@ The tool is particularly useful for security researchers, penetration testers, a
 
 ## Features
 
-### 🔍 **Comprehensive Secret Detection**
+### **Comprehensive Secret Detection**
 - **API Keys & Tokens**: Detects various API keys (AWS, Google, Stripe, etc.)
 - **Database Credentials**: Identifies database connection strings and credentials
 - **Payment Information**: Finds payment-related secrets and credit card patterns
 - **Authentication Tokens**: Discovers JWT tokens, OAuth secrets, and session tokens
 - **Cloud Service Credentials**: Detects credentials for AWS, Azure, GCP, and other cloud providers
 
-### 🌐 **Smart JavaScript Discovery**
+### **Smart JavaScript Discovery**
 - **Automatic JS File Discovery**: Crawls websites to find JavaScript files
 - **Common Path Detection**: Searches in typical JS file locations
 - **Direct JS File Support**: Can scan individual JavaScript files directly
 
-### 🛡️ **Security Analysis**
+### **Security Analysis**
 - **Endpoint Discovery**: Identifies API endpoints and internal URLs
 - **Sensitive Function Detection**: Finds functions that handle sensitive operations
 - **Hidden Functionality**: Uncovers obfuscated or hidden code patterns
 - **Hardcoded Credentials**: Detects credentials stored in variables or constants
 
-### ⚡ **Performance & Usability**
+### **Performance & Usability**
 - **Multi-threaded Scanning**: Configurable thread count for faster scanning
 - **Color-coded Output**: Severity-based color coding for easy identification
 - **Multiple Output Formats**: Text and JSON output options
 - **Severity Filtering**: Filter results by minimum severity level
 - **Verbose Mode**: Detailed logging for debugging and analysis
 
-### 📊 **Reporting**
+### **Reporting**
 - **Structured Reports**: Organized findings by category and severity
 - **Context Information**: Provides surrounding code context for findings
 - **Source Tracking**: Links findings to specific JavaScript files
