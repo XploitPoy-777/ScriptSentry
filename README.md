@@ -1,5 +1,7 @@
 # ScriptSentry - JavaScript Security Scanner
 
+<p align="center"><img src="assets/Screenshot_2025png.png"></p>
+
 ## Description
 
 ScriptSentry is a powerful and comprehensive JavaScript security scanner designed to detect security vulnerabilities, exposed secrets, and sensitive information in JavaScript files. It automatically crawls websites to find JavaScript files and analyzes them for various security issues including hardcoded credentials, API keys, database connection strings, and other sensitive data that could pose security risks.
